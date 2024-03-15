@@ -1,0 +1,55 @@
+{
+  "name": "voice-over-translation",
+  "version": "1.0.0",
+  "source": "src/index.js",
+  "author": "Toil",
+  "license": "MIT",
+  "description": "A small extension that adds a Yandex Browser video translation to other browsers",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ilyhalight/voice-over-translation.git"
+  },
+  "keywords": [
+    "cli",
+    "vot",
+    "voice-over-translation"
+  ],
+  "devDependencies": {
+    "css-loader": "^6.8.1",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.2",
+    "eslint-webpack-plugin": "^4.0.1",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.2.0",
+    "prettier": "^3.1.1",
+    "sass": "^1.69.6",
+    "sass-loader": "^13.3.3",
+    "style-loader": "^3.3.3",
+    "tslib": "^2.6.2",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.1",
+    "webpack-userscript": "^3.2.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:cloudflare": "webpack build -c webpack.config.js --env build_mode=cloudflare",
+    "build:default": "webpack build -c webpack.config.js",
+    "build:cloudflare-min": "webpack build -c webpack.config.js --env build_mode=cloudflare --env build_type=minify",
+    "build:default-min": "webpack build -c webpack.config.js --env build_type=minify",
+    "build": "npm run build:default && npm run build:cloudflare",
+    "build:min": "npm run build:default-min && npm run build:cloudflare-min",
+    "dev": "webpack serve --node-env development",
+    "dev:cloudflare": "webpack serve --node-env development --env build_mode=cloudflare",
+    "lint": "npx eslint .",
+    "lint-fix": "npx eslint . --fix",
+    "format": "prettier --write --ignore-unknown \"src/**/*.{html,css,scss,cjs,js,ts,json}\"",
+    "prepare": "husky install"
+  },
+  "dependencies": {
+    "bowser": "^2.11.0",
+    "requestidlecallback-polyfill": "^1.0.2"
+  }
+}
